@@ -1,0 +1,10 @@
+const inputName = prompt('Digita seu nome completo abaixo');
+document.body.innerHTML += `<p>Seu nome é <strong>${inputName}</strong></p>`;
+document.body.innerHTML += `<p>Seu nome tem <strong>${inputName.length}</strong> letras</p>`;
+document.body.innerHTML += `<p>A segunda letra do seu nome é <strong>${inputName.charAt(1)}</strong> </p>`; // ou inputName[1]
+document.body.innerHTML += `<p>O primeiro indice da letra <strong>'e'</strong> do seu nome é <strong>${inputName.indexOf('a')}</strong></p>`;
+document.body.innerHTML += `<p>O último indice da letra <strong>'e'</strong> do seu nome é <strong>${inputName.lastIndexOf('a')}</strong></p>`;
+document.body.innerHTML += `<p>As últimas 3 palavras do seu nome são <strong>${inputName.slice(-3)}</strong></p>`;
+document.body.innerHTML += `<p>As palavras do seu nome são <strong>${inputName.split(' ')}</strong></p>`;
+document.body.innerHTML += `<p>Seu nome com letras maiúculas fica <strong>${inputName.toUpperCase()}</strong></p>`;
+document.body.innerHTML += `<p>Seu nome com letras minúsculas fica <strong>${inputName.toLowerCase()}</strong></p>`;
