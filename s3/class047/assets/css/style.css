@@ -1,0 +1,61 @@
+@charset "pt-BR";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+    --main-color:#8E6CD6;
+    --main-color-dark:#403458;
+    --main-color-active:#93558c;
+    --main-color-bottom:#e9e1bf;
+}
+
+* {
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--main-color);
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
+
+.container {
+    max-width: 640px;
+    margin: 50px auto;
+    background: var(--main-color-bottom);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 10px 9px 20px 1px  black;
+}
+
+p {
+    color: rgba(91, 89, 89, 0.692);
+}
+
+p button, .start, .pause, .reset {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background: var(--main-color);
+    color: var(--main-color-dark);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+.clock {
+    font-size: 3em;
+}
+
+.paused {
+    color: red;
+}
+
+.starting {
+    color: rgb(91, 151, 0);
+}
