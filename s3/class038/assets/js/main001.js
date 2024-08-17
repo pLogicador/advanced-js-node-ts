@@ -1,18 +1,19 @@
-
-const div = document.querySelector('.paragraphs');
-const paragraphs = div.querySelectorAll('p');
+// Retrieve elements from the document
+const paragraphsContainer = document.querySelector('.paragraphs');
+const allParagraphs = paragraphsContainer.querySelectorAll('p');
 const bodyStyles = getComputedStyle(document.body);
-const backgroundColorBody = bodyStyles.backgroundColor; 
+const bodyBackgroundColor = bodyStyles.backgroundColor;
 
-//console.log(backgroundColorBody);
-/*
+// Apply styles to each paragraph
+for (let paragraph of allParagraphs) {
+    paragraph.style.backgroundColor = bodyBackgroundColor;
+    paragraph.style.color = 'white';
+}
+
+// console.log(bodyBackgroundColor);
+/* Another way with 'for...in'
 for (let index in paragraphs) {
     paragraphs[index].style.backgroundColor += backgroundColorBody;
     paragraphs[index].style.color += 'white';
 }
 */
-
-for (let i of paragraphs) {
-    i.style.backgroundColor += backgroundColorBody;
-    i.style.color += 'white';
-}
