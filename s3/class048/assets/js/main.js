@@ -2,80 +2,80 @@ const inputTask = document.querySelector('.input-task');
 const btnAdd = document.querySelector('.btn-add');
 const tasks = document.querySelector('.tasks');
 
+// Create a list item (li) element
 function createLi(){
-    const li = document.createElement('li');
-    return li;
+    return document.createElement('li');
 }
 
+// Clear input field and refocus
 function cleanInput(){
     inputTask.value = '';
     inputTask.focus();
 }
 
+// Create and append the delete button to the task list item
 function createBtnClean(li) {
-    li.innerText += ' ';
+    li.innerText += ' ';    // spacing between text and button within `li`
     const btnClean = document.createElement('button');
-    btnClean.innerText = 'Apagar';
-    //btnClean.classList.add('clear');
-    btnClean.setAttribute('class', 'clear'); // (atributo, valor)
+    btnClean.innerText = 'Remove';
+    btnClean.classList.add('clear'); //or btnClean.setAttribute('class', 'clear'); // (attribute, value) 
     li.appendChild(btnClean);
 }
 
+// Save tasks to local storage
 function saveTasks(){
-    const liTasks = tasks.querySelectorAll('li');
+    const taskItems = tasks.querySelectorAll('li');
     const toDoList = [];
     
-    for (let t of liTasks){
+    for (let t of taskItems){
         let taskText = t.innerText;
-        taskText = taskText.replace('Apagar', '').trim();
+        taskText = taskText.replace('Remove', '').trim();
         toDoList.push(taskText);
     }
 
-    const tasksJSON = JSON.stringify(toDoList); // 'stringify' converte para string no formato JSON
-    localStorage.setItem('tarefas', tasksJSON);
+    const tasksJSON = JSON.stringify(toDoList);
+    localStorage.setItem('My tasks', tasksJSON);
 }
 
-function createTask(inputText){
+// Create a new task item and append it to the list
+function createTask(taskText){
     const li = createLi();
-
-    li.innerText = inputText;
-    tasks.appendChild(li);
+    li.innerText = taskText;
     createBtnClean(li);
+    tasks.appendChild(li);
     saveTasks();
 }
 
-btnAdd.addEventListener('click', function(){
+// Event listener for adding tasks via button click
+btnAdd.addEventListener('click', () => {
     if (!inputTask.value) return;
-    
     createTask(inputTask.value);
     cleanInput();
 });
 
-inputTask.addEventListener('keypress', function(event){
-    if (event.keyCode === 13) {
-        if (!inputTask.value) return;
-    
+// Event listener for adding tasks via pressing Enter key
+inputTask.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter' && inputTask.value) {
         createTask(inputTask.value);
+        cleanInput();
     }
 });
 
-document.addEventListener('click', function(event){
-    const element = event.target;
-
-    if (element.classList.contains('clear')) {
-        element.parentElement.remove();
+// Handle task deletion when clicking the delete button
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('clear')) {
+        event.target.parentElement.remove();
         saveTasks();
     }
 });
 
+// Add tasks saved in local storage back to the list
 function addSavedTasks(){
-    const tasks = localStorage.getItem('tarefas');
-    const toDoList = JSON.parse(tasks); // 'parse' converte de volta para um objeto array do js
-    console.log(tasks);
-
-    for (let t of toDoList) {
-        createTask(t);
-    }
+    const savedTasks = localStorage.getItem('My tasks');
+    if (!savedTasks) return;
+    //console.log(savedTasks);
+    const toDoList = JSON.parse(savedTasks);
+    toDoList.forEach(task => createTask(task));
 }
 
 addSavedTasks();

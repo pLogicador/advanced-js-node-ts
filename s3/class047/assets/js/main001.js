@@ -1,51 +1,49 @@
-/*
-Closure (Fechamento): Uma closure é uma função que tem acesso a variáveis de seu próprio escopo, 
-bem como às variáveis do escopo em que ela foi criada (escopo pai). Isso significa que uma 
-função pode "lembrar" do ambiente em que foi criada, mesmo se for executada fora desse ambiente. 
-Closures são úteis para criar funções que encapsulam comportamentos específicos e podem 
-ser usadas para implementar conceitos como encapsulamento e privacidade de variáveis.
-*/
+// DOM element selectors
+const clockDisplay = document.querySelector('.clock');
+const startButton = document.querySelector('.start');
+const pauseButton = document.querySelector('.pause');
+const resetButton = document.querySelector('.reset');
 
-const CLOCK = document.querySelector('.clock');
-const START = document.querySelector('.start');
-const PAUSE = document.querySelector('.pause');
-const RESET = document.querySelector('.reset');
+// Control variables
 let seconds = 0;
 let timer;
 
-function createTimeOfSeconds(seconds) {
-    const DATE = new Date(seconds * 1000);
-    return DATE.toLocaleTimeString('pt-BR', {
+// Function to convert seconds to time format (00:00:00)
+function formatTime(seconds) {
+    const date = new Date(seconds * 1000);
+    return date.toLocaleTimeString('pt-BR', {
         hour12: false,
         timeZone: 'GMT'
     });
 }
 
-function startClock(){
-    timer = setInterval(function(){
+// Function to start the clock
+function startClock() {
+    timer = setInterval(() => {
         seconds++;
-        CLOCK.innerHTML = createTimeOfSeconds(seconds);
+        clockDisplay.innerHTML = formatTime(seconds);
     }, 1000);
 }
 
-START.addEventListener('click', function(event){
-    CLOCK.classList.remove('paused');
-    CLOCK.classList.add('starting');
-    clearInterval(timer);
+// Function that handles the click on the "Start" button
+startButton.addEventListener('click', () => {
+    clockDisplay.classList.remove('paused');
+    clockDisplay.classList.add('starting');
+    clearInterval(timer); // Ensures there are not multiple active timers
     startClock();
-})
+});
 
+// Function that handles the click on the "Pause" button
+pauseButton.addEventListener('click', () => {
+    clockDisplay.classList.remove('starting');
+    clockDisplay.classList.add('paused');
+    clearInterval(timer); // Pause the clock
+});
 
-PAUSE.addEventListener('click', function(event){
-    CLOCK.classList.remove('starting');
-    CLOCK.classList.add('paused');
-    clearInterval(timer);
-})
-
-RESET.addEventListener('click', function(event){
-    CLOCK.classList.remove('starting');
-    CLOCK.classList.remove('paused');
-    clearInterval(timer);
-    CLOCK.innerHTML = '00:00:00';
+// Function that handles the click on the "Reset" button
+resetButton.addEventListener('click', () => {
+    clockDisplay.classList.remove('starting', 'paused');
+    clearInterval(timer); // Reset the clock
+    clockDisplay.innerHTML = '00:00:00';
     seconds = 0;
-})
+});

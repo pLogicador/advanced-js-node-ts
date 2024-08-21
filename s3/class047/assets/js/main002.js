@@ -1,48 +1,52 @@
 function clock() {
-    const CLOCK = document.querySelector('.clock');
+    const clockDisplay = document.querySelector('.clock');
     let seconds = 0;
     let timer;
 
-    function createTimeOfSeconds(seconds) {
-        const DATE = new Date(seconds * 1000);
-        return DATE.toLocaleTimeString('pt-BR', {
+    // Function to format the seconds in a time string in the format 00:00:00
+    function formatTime(seconds) {
+        const date = new Date(seconds * 1000);
+        return date.toLocaleTimeString('pt-BR', {
             hour12: false,
             timeZone: 'GMT'
         });
     }
 
+    // Function to start the clock
     function startClock(){
-        timer = setInterval(function(){
+        timer = setInterval(() => {
             seconds++;
-            CLOCK.innerHTML = createTimeOfSeconds(seconds);
+            clockDisplay.innerHTML = formatTime(seconds);
         }, 1000);
     }
 
+    // Main function that handles click events
     document.addEventListener('click', function(event){
-        const ELEMENT = event.target;
+        const element = event.target;
 
-        if (ELEMENT.classList.contais('reset')) {
-            CLOCK.classList.remove('starting');
-            CLOCK.classList.remove('paused');
-            clearInterval(timer);
-            CLOCK.innerHTML = '00:00:00';
-            seconds = 0;
+        // Reset button logic
+        if (element.classList.contains('reset')) {
+            clockDisplay.classList.remove('starting', 'paused');
+            clearInterval(timer); // Stop the clock
+            clockDisplay.innerHTML = '00:00:00'; // Reset the display
+            seconds = 0; // Reset the seconds counter
         }
 
-        if (ELEMENT.classList.contais('pause')) {
-            CLOCK.classList.remove('starting');
-            CLOCK.classList.add('paused');
+        // Pause button logic
+        if (element.classList.contains('pause')) {
+            clockDisplay.classList.remove('starting');
+            clockDisplay.classList.add('paused');
             clearInterval(timer);
-        } 
-        
-        if (ELEMENT.classList.contais('start')) {
-            CLOCK.classList.remove('paused');
-            CLOCK.classList.add('starting');
-            clearInterval(timer);
-            startClock();
+        }
+
+        // Start button logic
+        if (element.classList.contains('start')) {
+            clockDisplay.classList.remove('paused');
+            clockDisplay.classList.add('starting');
+            clearInterval(timer); // Avoid multiple timers
+            startClock(); // Start the clock
         }
     });
-
 }
 
 clock();

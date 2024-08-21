@@ -1,5 +1,4 @@
 @charset "pt-BR";
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
@@ -23,7 +22,6 @@ body {
     line-height: 1.5em;
 }
 
-
 .container {
     max-width: 640px;
     margin: 50px auto;
@@ -46,7 +44,6 @@ p button, .start, .pause, .reset {
     font-size: 15px;
     font-weight: 700;
 }
-
 
 .clock {
     font-size: 3em;
