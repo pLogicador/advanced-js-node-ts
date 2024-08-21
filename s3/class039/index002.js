@@ -1,21 +1,23 @@
-function randomMinMax(min, max) {
-    const r = Math.random() * (max - min) + min;
-    return Math.floor(r);
+function getRandomIntInRange(min, max) {
+    // Generates a random integer between min (inclusive) and max (exclusive)
+    const randomNum = Math.random() * (max - min) + min;
+    return Math.floor(randomNum);
 }
-const MIN = 1;
-const MAX = 50;
-let rand = randomMinMax(MIN, MAX);
 
+const MIN_VALUE = 1;
+const MAX_VALUE = 30;
+let randomInt = getRandomIntInRange(MIN_VALUE, MAX_VALUE);
 
-while (rand !== 10) { // checando a condição enquanto for verdadeira
-    rand = randomMinMax(MIN, MAX);
-    console.log(rand);
+// Example 01 - While loop: check the condition and then execute if true
+while (randomInt !== 10) {
+    randomInt = getRandomIntInRange(MIN_VALUE, MAX_VALUE);
+    console.log(randomInt);
 }
 
 console.log('\n\n');
 
-do { // executa pelo menos uma vez o bloco de código para depois verificar a condição
-    rand = randomMinMax(MIN, MAX);
-    console.log(rand);
-
-} while (rand !== 10 );
+// Example 02 - Do-while loop: execute the code block at least once, then check the condition
+do {
+    randomInt = getRandomIntInRange(MIN_VALUE, MAX_VALUE);
+    console.log(randomInt);
+} while (randomInt !== 10);

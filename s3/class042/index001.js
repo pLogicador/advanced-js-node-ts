@@ -1,17 +1,26 @@
-/*  Escreva uma função chamada ePaisagem() que recebe 2 argumentos (largura, altura) de uma imagem (number).
-    retorne true se a imagem estiver no modo paisagem
+/*  Write a function called isLandscape() that takes 2 arguments (width, height) of an image (number).
+    return true if the image is in landscape mode
+
+Explanation:
+
+- width > height: If the width of the image is greater than its height, the image is in landscape mode. 
+    The function returns true in this case. Otherwise, it returns false.
 */
 
-function isLandscape1(width, height) {
-    return (width > height) ? true : false; 
+function isLandscape(width, height) {
+    return (width > height) ? true : false;
 }
 
-// ou 
-function isLandscape2(width, height) {
-    return width >= height; 
+// or
+function isLandscape(width, height) {
+    // Check if the width is greater than the height
+    return width > height;
 }
 
-const isLandscape3 = (width, height) => width >= height;
+// Alternatively, using a concise arrow function
+const isLandscape2 = (width, height) => width > height;
 
-console.log(isLandscape3(1920, 1080));   // widscreen
-console.log(isLandscape3(1080, 1920));   // portrate
+// Example usage
+console.log(isLandscape2(1920, 1080));   // Landscape (widescreen)
+console.log(isLandscape2(1080, 1920));   // Portrait
+console.log(isLandscape2(1080, 1080));   // Square (not landscape)

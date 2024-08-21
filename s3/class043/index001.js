@@ -1,23 +1,19 @@
-/*  Escreva uma função que recebe um número e retorne:
-    O número é divisível por 3 = Fizz
-    O número é divisível por 5 = Buzz
-    O número é divisível por 3 e 5 = FizzBuzz
-    O número não é divisível por 3 e 5 = retorna o próprio número
-    checar se o número é realmente um número
-    utilize a função com números de 0 a 100
-*/
-
-const NUMBERS = [10,15,20,5,3,9,13];
+const NUMBERS = [10,15,20,25,5,3,9,13,40,50];
 
 function fizzBuzz(number) {
-
+    // Check if the value is a number
     if (typeof number !== 'number') return NaN;
-    if (number%3 === 0 && number%5 === 0) return 'FizzBuzz'; // precisa ficar no topo, por que ?
-    if (number%3 === 0) return 'Fizz';
-    if (number%5 === 0) return 'Buzz';
+
+    // Check divisibility and return the corresponding value
+    if (number % 3 === 0 && number % 5 === 0) return 'FizzBuzz'; // Divisible by both 3 and 5
+    if (number % 3 === 0) return 'Fizz'; // Divisible by 3
+    if (number % 5 === 0) return 'Buzz'; // Divisible by 5
+
+    // If not divisible by 3 or 5, return the number itself
     return number;
 }
 
+// Iterate over numbers from 0 to 100 and apply the fizzBuzz function
 for (let i=0; i<=100; i++) {
     console.log(i, fizzBuzz(i));
 }

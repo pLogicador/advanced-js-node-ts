@@ -1,14 +1,14 @@
-// setInterval e setTimeout
-function returnHour() {
-    let date = new Date();
-    
-    return date.toLocaleTimeString('pt-BR', {
-        hour12: false
-    });
+// setInterval and setTimeout - Using `setInterval()`
+// Function to get the current time in 24-hour format
+function getCurrentTime() {
+    const date = new Date();
+    return date.toLocaleTimeString('pt-BR', { hour12: false });
 }
 
-function functionTheSetInterval() {
-    console.log(returnHour());
+// Function to log the current time to the console
+function displayTime() {
+    console.log(getCurrentTime());
 }
 
-setInterval(functionTheSetInterval, 1000); // de 1 em 1 seg
+// Call 'displayTime' every second (1000ms)
+setInterval(displayTime, 1000);

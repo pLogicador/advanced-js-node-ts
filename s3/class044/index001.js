@@ -1,27 +1,19 @@
-// tratando e lançando erros (try, catch, throw)
-/*
-// tentar
-try {
-    console.log(notExist);
-} catch (err) {
-    console.log(`variável não definida`);
-    //console.log(err); // Não mostre o erro para o susuário final(caso para back-end), trate-a
-}
-*/
+// handling and throwing errors (`try`, `catch`, `throw`)
 
+// Function to add two numbers with input validation
 function sum(n1, n2) {
+    // Checks if both arguments are numbers
     if (typeof n1 !== 'number' || typeof n2 !== 'number') {
-        throw new Error("it's NaN");  // lançando um erro
+        throw new Error("Both arguments must be numbers.");
     }
-    return n1+n2;
+    return n1 + n2;
 }
 
-
-// se houver erro no bloco try catch será executado e senão apenas o try é executado
+// Code block to test the 'sum' function and error handling
 try {
-    console.log(sum(5, 10));
-    console.log(sum('a', 10));
-} catch(error) {
-    //console.log(error);
-    console.log('Algo Amigável para user.');
+    console.log(sum(5, 10));    // Attempt to execute the function with valid parameters
+    console.log(sum('a', 10)); // Attempt to execute function with invalid parameters
+} catch (error) {
+    // Catch and handle the thrown error
+    console.error('An error occurred:', error.message);
 }

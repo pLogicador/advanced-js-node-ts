@@ -1,15 +1,17 @@
-// While e do while (estrutura de repetição)
-const nome = 'pLogicador';
-let i = 0;
-
+// `While` and `do while` (loop structures)
+// Example 01
 let index = 0;
 
 while (index <= 10) {
     console.log(index);
-    index++;    // cuidado com o laço infinito
+    index++;    // be careful with the infinite loop
 }
 
-while (i <= nome.length-1) {
-    console.log(nome[i]);
+// Example 02
+const varName = 'pLogicador';
+let i = 0;
+
+while (i <= varName.length-1) {
+    console.log(varName[i]);
     i++;   
 }

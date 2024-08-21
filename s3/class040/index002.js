@@ -1,21 +1,23 @@
-const numbers = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+// Example with `do while`
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
-let i = 0
+let index = 0;
+
 do {
-    let n = numbers[i];
+    const currentNumber = numbers[index];
 
-    if (n === 2) {
-        console.log('pulei!');
-        i++;
-        continue;   // pula para o proximo bloco ou iteração e continua
+    if (currentNumber === 2) {
+        console.log('Skipped!');
+        index++;
+        continue;   // Skip the rest of the loop and move to the next iteration
     }
 
-    console.log(n);
+    console.log(currentNumber);
 
-    if (n === 7) {
-        console.log('cheguei ao 7, vamos parar!');
-        break;  // quebra o laço automaticamente e para a iteração
+    if (currentNumber === 7) {
+        console.log('Reached 7, stopping!');
+        break;  // Exit the loop
     }
 
-    i++; // lembre-se que sempre devemos atualizar a variável de controle
-} while (i <= numbers.length-1);
+    index++; // Update the control variable to move to the next element
+} while (index < numbers.length);

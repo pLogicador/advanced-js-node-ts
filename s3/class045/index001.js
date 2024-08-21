@@ -1,33 +1,25 @@
-/* tratando e lançando erros (try, catch, finally)
-
 try {
-    // executado quando não houver erros
-} catch (e) {
-    // executado quando houver erros
-} finally {
-    // executado sempre
-}
+    // Simulate operations that may throw errors
+    console.log('Opened a file');
+    console.log('Processed the file and encountered an error');
+    console.log('Closed the file');
 
-*/
-
-
-try {
-    //console.log(a);
-    console.log('Abri um arquivo');
-    console.log('Manipulei o arquivo e gerou erro');
-    console.log('Fechei o arquivo');
-
+    // Nested try-catch block to capture specific errors
     try {
-        console.log(b);
+        // Simulate error
+        console.log(b); // Variable 'b' is not defined
     } catch (err) {
-        console.log('Deu erro');
+        // Capture and handle the specific error
+        console.log('Error accessing variable:', err.message);
     } finally {
-        console.log('também sou finally');
+        // Always executed after the nested try-catch block
+        console.log('This finally block is always executed.');
     }
 
-
 } catch (e) {
-    console.log('tratando o erro');
+    // Capture and handle any error from the outer try block
+    console.log('Error handling in the outer block:', e.message);
 } finally {
-    console.log('sou sempre executado');
+    // Always executed after the outer try-catch block
+    console.log('This finally block is always executed, regardless of errors.');
 }

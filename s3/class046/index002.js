@@ -1,22 +1,21 @@
-// setInterval e setTimeout
-// utilizando função anonima
+// setInterval and setTimeout - Using `setTimeout()`
+// Using anonymous function
 function returnHour() {
-    let date = new Date();
-    
-    return date.toLocaleTimeString('pt-BR', {
-        hour12: false
-    });
+    const date = new Date();
+    return date.toLocaleTimeString('pt-BR', { hour12: false });
 }
 
-
-const timer = setInterval(function (){
+// Starts a timer that logs the current time every second
+const timer = setInterval(() => {
     console.log(returnHour());
-}, 1000); // de 1 em 1 seg
+}, 1000); 
 
-setTimeout(function (){
+// Stops the timer after 10 seconds
+setTimeout(() => {
     clearInterval(timer);
-}, 10000); // para após 10 sec
+}, 10000); 
 
-setTimeout(function (){
+// Displays a message after 5 seconds
+setTimeout(() => {
     console.log('Hello!!');
-}, 5000);
+}, 5000); 

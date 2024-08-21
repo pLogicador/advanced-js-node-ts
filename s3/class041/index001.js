@@ -1,29 +1,33 @@
-// Escreva uma função que recebe 2 números e retorne o meior deles
+// Write a function that takes 2 numbers and returns the smaller of them
 
-const FIRST_VALUE = 50
-const SECOND_VALUE = 90
+const FIRST_VALUE = 50;
+const SECOND_VALUE = 90;
 
-function findTheBiggest1(n1, n2) {
-    if (n1 > n2) {
-        return n1;
+// Function to find the larger of two numbers using a classic function declaration
+function findTheLargest1(num1, num2) {
+    if (num1 > num2) {
+        return num1;
     }
-    return n2;
+    return num2;
 }
 
-function findTheBiggest2(n1, n2) {
-    return (n1 > n2) ? n1 : n2
+// Function to find the larger of two numbers using a ternary operator
+function findTheLargest2(num1, num2) {
+    return (num1 > num2) ? num1 : num2;
 }
 
-const findTheBiggest3 = (n1, n2) => {
-    return (n1 > n2) ? n1 : n2
+// Arrow function to find the larger of two numbers with explicit return
+const findTheLargest3 = (num1, num2) => {
+    return (num1 > num2) ? num1 : num2;
 }
 
-const findTheBiggest4 = (n1, n2) => {
-    return Math.max(n1, n2);
+// Arrow function to find the larger of two numbers using Math.max
+const findTheLargest4 = (num1, num2) => {
+    return Math.max(num1, num2);
 }
 
-// ou 
-const findTheBiggest5 = (n1, n2) => Math.max(n1, n2);
+// Shortened arrow function to find the larger of two numbers using Math.max
+const findTheLargest5 = (num1, num2) => Math.max(num1, num2);
 
-
-console.log(findTheBiggest5(FIRST_VALUE, SECOND_VALUE));
+// Example usage
+console.log(findTheLargest5(FIRST_VALUE, SECOND_VALUE)); // Outputs: 90
