@@ -1,49 +1,50 @@
-// closures
+// Closures
+
 /*
-    Closures estão relacionados ao escopo léxico de uma função. 
-    Eles têm a habilidade de acessar seu escopo léxico mesmo após a execução da função.
+    Closures estão relacionados ao escopo léxico de uma função.
+    Uma closure tem a habilidade de "lembrar" variáveis do escopo no qual foi criada,
+    mesmo depois que a função externa tenha sido executada.
 
-    Nesta função abaixo, a função anônima possui 3 escopos léxicos:
+    No exemplo abaixo, a função anônima criada dentro da função externa
+    possui acesso a 3 tipos de escopos:
 
-    1. Closure: Inclui variáveis definidas fora da função. Como esta função está fechando um escopo, 
-    quando ela é executada, ela vai reter a referência à variável do jeito que foi definida.
-
-    2. Script: Refere-se ao local onde a função foi declarada. Se outra função fosse declarada no mesmo local, 
-    ela teria acesso, tornando-as "vizinhas". Acesso ao que está no script.
-
-    3. Global: Pode acessar qualquer coisa, no contexto web, 
-    dentro do objeto global (por exemplo, `window`).
-
+    1. Closure: Mantém uma referência às variáveis externas do escopo onde a função foi criada.
+    2. Escopo do Script: Refere-se ao local no código onde a função foi declarada. 
+    3. Escopo Global: A função pode acessar variáveis do escopo global (como `window` no contexto web).
 */
 
-// Exemplo 1: Closure retendo referência à variável 'nome'
-function retornaFuncao(){
-    const nome = 'Pedro';
+// Example 1: Closure keeping reference to variable 'name'
+function returnFunction() {
+    const name = 'Pedro';
 
-    return function(){ // retorna uma função anonima
-        return nome;
+    return function() { // return an anonymous function
+        return name;
     };
 }
 
-const funcao = retornaFuncao();
-console.log(funcao);    // Saída: 'Pedro'
-console.dir(funcao);    // 'dir' é semelhante a 'log', mas revela mais detalhes sobre a função anônima e seus escopos léxicos
+const myFunction = returnFunction();
+console.log(myFunction());    // Output: 'Pedro'
+console.dir(myFunction);      // Shows details about the function, including its lexical scope
 
-
-// Exemplo 2: Closures mantendo escopo específico para cada função criada
-function retornaFuncao2(nome){
-    return function(){
-        return nome;
+// Example 2: Closures maintaining a specific scope for each created function
+function returnFunctionWithParam(name) {
+    return function() {
+        return name;
     };
 }
 
-const funcao1 = retornaFuncao2('Pedro'); // ela precisa fechar o escopo com o parametro (explique melhor)
-const funcao2 = retornaFuncao2('Maria');
-console.dir(funcao1);
-console.dir(funcao2);
+const func1 = returnFunctionWithParam('Pedro'); // Each created function "closes" its own scope based on the passed argument.
+const func2 = returnFunctionWithParam('Maria');
 
-console.log(funcao1(), funcao2()); // essas funções não mudam, vão ser sempre assim (explique melhor)
+console.dir(func1); // Reveals the scopes and the 'name' variable associated with the closure
+console.dir(func2);
+
+console.log(func1(), func2()); // Output: 'Pedro', 'Maria'
 /*
-    Nestes exemplos, as funções criadas mantêm uma referência ao escopo léxico onde foram criadas,
-    permitindo que a variável 'nome' seja acessada mesmo após a execução das funções externas.
+    Cada função criada por 'returnFunctionWithParam' mantém uma referência ao valor do
+    parâmetro 'name' do escopo onde foi criada. Mesmo que a função externa tenha sido
+    executada e terminada, o escopo é preservado para as funções internas.
+
+    Portanto, func1 sempre retornará 'Pedro' e func2 sempre retornará 'Maria',
+    já que a closure preserva o escopo original onde a função foi criada.
 */

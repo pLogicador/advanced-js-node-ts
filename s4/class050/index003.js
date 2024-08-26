@@ -1,22 +1,36 @@
-const contav2 = function (operador, acumulador, ...numeros) {
-    for(let n of numeros) {
-        if (operador === '+') acumulador += n;
-        if (operador === '-') acumulador -= n;
-        if (operador === '*') acumulador *= n;
-        if (operador === '/') acumulador /= n;
-
+// Function using Rest Operator for Variable Number of Arguments
+const calculate = function (operator, accumulator, ...numbers) {
+    // Iterate over the array of numbers and perform the specified operation
+    for (const number of numbers) {
+        switch (operator) {
+            case '+':
+                accumulator += number;
+                break;
+            case '-':
+                accumulator -= number;
+                break;
+            case '*':
+                accumulator *= number;
+                break;
+            case '/':
+                accumulator /= number;
+                break;
+            default:
+                console.error('Unsupported operator');
+                return;
+        }
     }
-    console.log(acumulador);
+    console.log(`Result: ${accumulator}`);
 };
 
-contav2('*',   1,   5,5);
+// Example usage of calculate function
+calculate('*', 1, 5, 5);
 
-// OBS: O rest operator deve ser utilizado no último parâmetro da função
-
-// Utilizando o Rest Operator em Arrow Function
-const pegandoOsArgumentos = (...args) => {
-    console.log(args);
+// Using Rest Operator in Arrow Function
+const logArguments = (...args) => {
+    console.log(args); // Logs all arguments as an array
 };
 
-console.log('*',   1,   5,5);
-// Neste exemplo, o rest operator captura todos os argumentos restantes e os coloca em um array
+// Example usage of logArguments function
+logArguments('*', 1, 5, 5);
+// The rest operator captures all arguments into an array and logs them

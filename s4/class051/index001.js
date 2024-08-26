@@ -1,32 +1,32 @@
-// retorno da função
+// Function return
 
 /*
     return
-        - Retorna um valor.
-        - Encerra a execução da função.
+        - Returns a value.
+        - Ends the function execution.
 
-    OBS:
-        Existem funções que retornam um valor e outras não. Tudo vai depender do contexto.
+    Note:
+        Some functions return a value, while others do not. It depends on the context.
 
-    Exemplo:
-        document.addEventListener('click', function(){
+    Example:
+        document.addEventListener('click', function() {
             document.body.style.background = "black";
         });
-        // Esta função não retorna nada, porém, executa uma ação.
-    
-    Exemplo 2:
+        // This function doesn't return anything but performs an action.
+
+    Example 2:
 */
 
-// Função que retorna um objeto
-function criaPessoa(nome, sobrenome) {
-    return {nome, sobrenome};
+// Function that returns an object
+function createPerson(firstName, lastName) {
+    return { firstName, lastName };
 }
 
-const p1 = criaPessoa("Pedro", "Miranda");
-const p2 = {
-    nome: 'Pedro', 
-    sobrenome: 'Miranda'
-}
+const person1 = createPerson("Pedro", "Miranda");
+const person2 = {
+    firstName: 'Pedro', 
+    lastName: 'Miranda'
+};
 
-console.log(typeof p1); // Saída: object
-console.log(typeof p2); // Saída: object
+console.log(typeof person1); // Output: object
+console.log(typeof person2); // Output: object

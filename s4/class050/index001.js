@@ -1,46 +1,49 @@
-// Parâmetros da função
+// Function Parameters
 /*
-    Ao utilizar 'function' ou 'function expression', uma variável 'arguments' é 
-    automaticamente criada por padrão em uma função sem parâmetros. 
-    Essa variável 'arguments' sustenta todos os argumentos enviados para a função.
+    In JavaScript, functions automatically create an 'arguments' variable 
+    when using 'function declarations' or 'function expressions' 
+    without explicitly defined parameters. This 'arguments' object contains 
+    all the arguments passed to the function.
 */
 
-// Exemplo 1: Função com 'arguments'
-function funcao() {
+// Example 1: Function with 'arguments'
+function logArguments() {
     console.log('hey');
-    console.log(arguments[0]); // A variável 'arguments' contém todos os argumentos passados para a função
+    console.log(arguments[0]); // The 'arguments' object contains all passed arguments
 }
 
-funcao('Epa', 1,2,3,4,5);   // JS não gera um erro, mesmo com um número diferente de parâmetros
+logArguments('Hello', 1, 2, 3, 4, 5); // JavaScript handles the varying number of arguments without error
 
-// Exemplo 2: Função de soma com 'arguments'
-function soma() {
+// Example 2: Sum Function with 'arguments'
+function sumAll() {
     let total = 0;
 
-    for(let a of arguments) {
-        total += a;
+    for (let arg of arguments) {
+        total += arg;
     }
     console.log(total);
 }
 
-soma(5,5); // Saída: 10
+sumAll(5, 5); // Output: 10
 
-// Exemplo 3: Função com parâmetros definidos
-function funcao2(a,b,c,d,e,f){
-    console.log(a,b,c,d,e,f)
+// Example 3: Function with Explicit Parameters
+function logValues(a, b, c, d, e, f) {
+    console.log(a, b, c, d, e, f);
 }
-funcao2(1,2,3); // JS atribui automaticamente 'undefined' para os parâmetros ausentes
 
-// Exemplo 4: Função com valor padrão para parâmetro
-function soma2(a,b = 5) {
-     // Alternativa ao valor padrão usando operador lógico: b = b || 5; (método ultrapassado)
-    console.log(a + b)
-}
-soma2(5);   // Se o segundo argumento não for enviado, o valor padrão (5) é utilizado
+logValues(1, 2, 3); // JavaScript assigns 'undefined' to missing parameters
 
-// Exemplo 5: Função com múltiplos parâmetros e valores padrão
-function soma3(a,b = 5, c=4) {
-    console.log(a + b + c)
+// Example 4: Function with Default Parameter Values
+function add(a, b = 5) {
+    console.log(a + b);
 }
-soma3(5, undefined, 10);
-// Ao pular um parâmetro e passar 'undefined', a função assume o valor padrão para esse parâmetro
+
+add(5); // If the second argument is not provided, the default value (5) is used
+
+// Example 5: Function with Multiple Parameters and Default Values
+function addWithDefaults(a, b = 5, c = 4) {
+    console.log(a + b + c);
+}
+
+addWithDefaults(5, undefined, 10); 
+// Passing 'undefined' for a parameter uses the default value for that parameter

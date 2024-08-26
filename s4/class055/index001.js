@@ -1,28 +1,15 @@
-// Funções imediatas (IIFE) -> Immediately Invoked Function Expression
+// Immediately Invoked Function Expression (IIFE)
 
-// Invocando uma função anônima sem que ela toque o escopo global
-(function(){    // sem parâmetros
-    const nome = 'Pedro';
+// Example 1: IIFE without parameters
+(function() {
+    const name = 'Pedro';
+    console.log(name);
+})();   
 
-    console.log(nome);
-})();   // sem argumentos
+// Declaring a global variable for comparison
+const name = 'Miranda';
 
-const nome = 'Miranda';
-
-// Utilizando parâmetros em uma IIFE
-(function(idade, peso, altura){   
-
-    console.log(idade, peso, altura)
-})(20, 75, 1.80);   // com argumentos
-
-// Evite SyntaxError utilizando uma expressão de função anônima
-/*
-function(){
-
-}()
-*/
-
-/*
-    Ao usar IIFE, você evita poluir o escopo global, mantendo as variáveis locais dentro da função
-    e apenas expondo o que for necessário.
-*/
+// Example 2: IIFE with parameters
+(function(age, weight, height) {
+    console.log(age, weight, height);
+})(20, 75, 1.80);  

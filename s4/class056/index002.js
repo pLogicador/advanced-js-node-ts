@@ -1,59 +1,50 @@
-// Funções fábrica (factory functions) VS Função construtora (constructor functions)
-/*
-    A principal diferença entre esses dois tipos de funções está na forma como os objetos são criados.
-
-    - Funções Fábrica: Retornam um objeto diretamente. São funções que fabricam e retornam objetos literalmente.
-    - Funções Construtoras: Utilizam a palavra-chave 'new' para instanciar objetos. Elas operam em um modo "construtor".
-
-    O exemplo abaixo utiliza uma Factory Function para criar um objeto pessoa com métodos e propriedades.
-
-    Nota: No exemplo, a propriedade 'nomeCompleto' é configurada usando getters e setters, enquanto 'imc' é apenas um getter.
-
-*/
-
-// Factory Function: Cria um objeto pessoa
-function criaPessoa(nome, sobrenome, height, weight) {
+// Factory Function: Creating a person object with methods and properties
+function createPerson(firstName, lastName, height, weight) {
     return {
-        nome, 
-        sobrenome,
+        firstName,
+        lastName,
 
-        // Getter
-        get nomeCompleto(){
-            return `${this.nome} ${this.sobrenome}`;
+        // Getter for full name
+        get fullName() {
+            return `${this.firstName} ${this.lastName}`;
         },
 
-        // Setter
-        set nomeCompleto(valor){
-            valor = valor.split(' ');
-            this.nome = valor.shift();
-            this.sobrenome = valor.join(' ');
+        // Setter for full name
+        set fullName(value) {
+            const parts = value.split(' ');
+            this.firstName = parts.shift(); // Remove and return the first element
+            this.lastName = parts.join(' '); // Join the remaining elements as last name
         },
 
-        // método
-        fala(asunnto = '...'){
-            return `${this.nome} está falando ${asunnto}`;
-        }, 
+        // Method for speaking
+        speak(topic = '...') {
+            return `${this.firstName} is talking about ${topic}`;
+        },
 
-        altura: height,
-        peso: weight, 
+        // Properties for height and weight
+        height,
+        weight,
 
-        // Gettter
-        get imc(){
-            const indice = this.peso / (this.altura * this.altura);
-            return indice.toFixed(2);
+        // Getter for BMI (Body Mass Index)
+        get bmi() {
+            const index = this.weight / (this.height ** 2);
+            return index.toFixed(2); // Return BMI rounded to 2 decimal places
         }
-
     };
 }
 
-// Criando uma pessoa usando a Factory Function
-const p1 = criaPessoa('Pedro', 'Miranda', 1.80, 75);
-p1.nomeCompleto = 'Jertrudes Miranda Silva';
-console.log(p1.nome);
-console.log(p1.sobrenome);
-console.log(p1.nomeCompleto);  
-console.log(p1.fala());
+// Creating a person using the factory function
+const person1 = createPerson('Pedro', 'Miranda', 1.80, 75);
 
-// Tentando modificar a altura diretamente (não funciona, pois não possui um Setter)
-p1.altura = 1.75;
-console.log(p1.imc);    // O imc permanece o mesmo
+// Changing the full name using the setter
+person1.fullName = 'Gertrudes Miranda Silva';
+
+// Logging the results
+console.log(person1.firstName); // Output: Gertrudes
+console.log(person1.lastName);  // Output: Miranda Silva
+console.log(person1.fullName);  // Output: Gertrudes Miranda Silva
+console.log(person1.speak('JavaScript')); // Output: Gertrudes is talking about JavaScript
+
+// Trying to modify the height directly (this works because height is a direct property)
+person1.height = 1.75;
+console.log(person1.bmi);  // Output: Updated BMI after height change

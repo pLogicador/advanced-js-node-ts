@@ -1,26 +1,20 @@
-// Escopo Léxico
-/*
-    O escopo léxico refere-se à capacidade de uma função em JS de acessar variáveis do 
-    local onde ela foi declarada, bem como de seus "vizinhos" na hierarquia de escopo.
-    Isso significa que, se uma variável não estiver declarada dentro da função, 
-    ela buscará no escopo que a contém, subindo até o escopo global, se necessário.
-*/
-const nome = 'Pedro';
+// Lexical Scope
 
-function falaNome(){
-    console.log(nome);
+const name = 'Pedro'; // Global variable
+
+function speakName() {
+    console.log(name); // Lexical scope allows access to 'name' from the outer scope
 }
 
-
-function usaFalaNome(){
-    const nome = 'Miranda';  // Esta declaração está dentro do escopo de 'usaFalaNome'
-    falaNome();
+function useSpeakName() {
+    const name = 'Miranda';  // This 'name' is declared inside 'useSpeakName' scope
+    speakName(); // Calls the 'speakName' function which will access the outer 'name' variable
 }
 
-usaFalaNome();
+useSpeakName();  // Output: Pedro
 
 /*
-    Quando 'falaNome' é chamada dentro de 'usaFalaNome', ela acessa a variável 'nome' 
-    no seu escopo léxico, que inclui a variável 'nome' declarada dentro de 'usaFalaNome'.
-    Portanto, a saída será 'Miranda', não a variável global 'Pedro'.
+    When 'speakName' is called inside 'useSpeakName', it accesses the variable 'name'
+    from its own lexical scope, which includes the global 'name' variable 'Pedro'. 
+    Therefore, the output will be 'Pedro', not the 'name' declared within 'useSpeakName'.
 */

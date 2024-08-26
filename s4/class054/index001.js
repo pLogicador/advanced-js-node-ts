@@ -1,74 +1,64 @@
-// Funções de callback
+// Callback functions
 
-/*
-    Função auxiliar para gerar números randômicos dentro de um intervalo específico.
-*/
-function rand(min = 1000, max= 3000) { 
-    const numRandom = Math.random() * (max-min) + min;
-    return Math.floor(numRandom);
+// Helper function to generate random numbers within a specified range
+function getRandomDelay(min = 1000, max = 3000) {
+    const randomDelay = Math.random() * (max - min) + min;
+    return Math.floor(randomDelay);
 }
 
-/*
-    Função f1: Simula uma operação assíncrona com um atraso randômico.
-    Aceita um callback como parâmetro, que será chamado quando a operação estiver concluída.
-*/
-function f1(callback){
-    setTimeout(function(){
+// Function f1: Simulates an asynchronous operation with a random delay
+function f1(callback) {
+    setTimeout(() => {
         console.log('f1');
         if (callback) callback();
-    }, rand());
+    }, getRandomDelay());
 }
 
-/*
-    Função f2: Similar a f1, simula outra operação assíncrona.
-*/
-function f2(callback){
-    setTimeout(function(){
+// Function f2: Similar to f1, simulates another asynchronous operation
+function f2(callback) {
+    setTimeout(() => {
         console.log('f2');
         if (callback) callback();
-    }, rand());
+    }, getRandomDelay());
 }
 
-/*
-    Função f3: Simula mais uma operação assíncrona.
-*/
-function f3(callback){
-    setTimeout(function(){
+// Function f3: Simulates yet another asynchronous operation
+function f3(callback) {
+    setTimeout(() => {
         console.log('f3');
         if (callback) callback();
-    }, rand());
+    }, getRandomDelay());
 }
-
 /*
-    Exemplo 1: Execução sem callback de forma aleatória.
-*/
+// Example 1: Random execution without callbacks
 f1();
 f2();
 f3();
-console.log('Olá Mundo');
+console.log('Hello, World!');
+*/
+// Example 2: Chained execution using callbacks (Callback Hell)
 /*
-// Exemplo 2: Execução encadeada utilizando callbacks (callback hell).
-// OBS: Há um pequeno erro de sintaxe na chamada da função f3.
-
-f1(function(){
-    f2(function(){
-        f3(){
-            console.log('Olá, Mundo!');
-        };
+f1(function() {
+    f2(function() {
+        f3(function() {
+            console.log('Hello, World!');
+        });
     });
 });
 */
-// Exemplo 3: Limpeza de callbacks utilizando funções separadas.
-f1(f1Callback);
 
-function f1Callback(){
-    f2(f2Callback);
+// Example 3: Clean callback management using separate functions
+function handleF1() {
+    f2(handleF2);
 }
 
-function f2Callback(){
-    f2(f3Callback);
+function handleF2() {
+    f3(handleF3);
 }
 
-function f3Callback(){
-    console.log('Olá, Mundo!');
+function handleF3() {
+    console.log('Hello, World!');
 }
+
+// Start the chain
+f1(handleF1);

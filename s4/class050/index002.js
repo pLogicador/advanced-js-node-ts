@@ -1,37 +1,45 @@
-// Atribuição via Desestruturação
+// Destructuring Objects and Arrays in JavaScript
 
-// Exemplo 1: Desestruturação de objeto como parâmetro
-function funcao({nome, sobrenome, idade}) {
-    // Desestruturação nos parâmetros permite extrair valores diretamente de um objeto
-    console.log(nome, sobrenome, idade);
+// Example 1: Object Destructuring as a Parameter
+function printPersonInfo({ firstName, lastName, age }) {
+    // Destructuring in parameters allows extracting values directly from an object
+    console.log(`First Name: ${firstName}, Last Name: ${lastName}, Age: ${age}`);
 }
 
-funcao({nome:'Pedro', sobrenome:'Miranda', idade:45}); // Enviando um objeto literal como argumento
+const person = { firstName: 'Pedro', lastName: 'Miranda', age: 45 };
+printPersonInfo(person); // Passing an object literal
 
-// Ou utilizando uma variável
-let obj = {nome:'Pedro', sobrenome:'Miranda', idade:45};
-funcao(obj);
-
-// Exemplo 2: Desestruturação de array como parâmetro
-function funcao2([v1, v2, v3]) {
-    // Desestruturação nos parâmetros permite extrair valores diretamente de um array
-    console.log(v1, v2, v3);
+// Example 2: Array Destructuring as a Parameter
+function printValues([value1, value2, value3]) {
+    // Destructuring in parameters allows extracting values directly from an array
+    console.log(`Value 1: ${value1}, Value 2: ${value2}, Value 3: ${value3}`);
 }
-funcao2(['Pedro', 'Miranda', 34]);
 
-// Exemplo 3: Rest Operator para lidar com número variável de argumentos
-function conta(operador, acumulador, ...numeros) {
-     // O rest operator (...) permite capturar todos os argumentos restantes em um array
-    for(let n of numeros) {
-        if (operador === '+') acumulador += n;
-        if (operador === '-') acumulador -= n;
-        if (operador === '*') acumulador *= n;
-        if (operador === '/') acumulador /= n;
+printValues(['Pedro', 'Miranda', 34]); // Passing an array literal
 
+// Example 3: Rest Operator for Variable Number of Arguments
+function calculate(operator, accumulator, ...numbers) {
+    // The rest operator (...) captures all remaining arguments in an array
+    for (const number of numbers) {
+        switch (operator) {
+            case '+':
+                accumulator += number;
+                break;
+            case '-':
+                accumulator -= number;
+                break;
+            case '*':
+                accumulator *= number;
+                break;
+            case '/':
+                accumulator /= number;
+                break;
+            default:
+                console.error('Unsupported operator');
+                return;
+        }
     }
-    console.log(acumulador);
+    console.log(`Result: ${accumulator}`);
 }
 
-conta('*',   1,   5,5);
-
-// Observação: O rest operator deve ser utilizado no último parâmetro da função
+calculate('*', 1, 5, 5); // Calculating with multiple numbers

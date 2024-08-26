@@ -1,51 +1,57 @@
-// Funções contrutoras (constructor functions)
+// Constructor Functions
 
-/*  É como um molde para gerar objetos
-    Função construtora  ->  objeto
-    Função fábrica      ->  objeto
+/*
+    Constructor Functions are used as templates to create objects.
+    They allow you to create multiple instances of objects with 
+    the same properties and methods.
 
-    Uma função construtora é como um molde para gerar objetos.
-    Ela cria objetos com propriedades e métodos compartilhados.
-    Em JS, as funções construtoras são frequentemente utilizadas 
-    com a palavra-chave 'new' para criar instâncias desses objetos.
+    - Constructor Function -> Creates a new object
+    - Factory Function -> Also creates a new object but without using 'new'
 
-    Convenção: Funções construtoras geralmente começam com letra maiúscula
-    Exemplo: Pessoa, Carro, Produto, etc.
+    In JavaScript, Constructor Functions are commonly used together with 
+    the 'new' keyword to instantiate objects. By convention, the names of 
+    Constructor Functions begin with uppercase letters, such as Person, 
+    Car, Product, etc.
+
+    A classic example is creating person objects.
 */
 
-// Molde para Pessoa
-function Pessoa(nome, sobrenome) {
-    /*
-    // Atributos ou métodos privados
-    const ID = 001529886;
+// Template for creating Person objects
+function Person(firstName, lastName) {
+    // Private attributes or methods (not accessible outside the constructor function)
+    const ID = 1529886;
 
-    // Este método não está disponível fora da função construtora
-    const metodoInterno = () =>{};
-    */
+    const internalMethod = () => {
+        console.log('Internal method, not accessible externally.');
+    };
 
-    // 'this' é usado para criar atributos ou métodos públicos
-    this.nome = nome;
-    this.sobrenome = sobrenome;
+    // 'this' creates public attributes or methods accessible outside the function
+    this.firstName = firstName;
+    this.lastName = lastName;
 
-    // Método público
-    this.metodo = () =>{
-        console.log(`${this.nome}, sou um método!`);
+    // Public method
+    this.method = () => {
+        console.log(`${this.firstName}, I am a public method!`);
     };
 }
 
 /*
-    O 'this' em JS refere-se ao objeto que está sendo criado ou modificado quando a 
-    função construtora é chamada com a palavra-chave 'new'. 
-    Em outras palavras, this' aponta para a instância do objeto que está sendo criada.
+    'this' inside a Constructor Function refers to the new object instance 
+    being created. Whenever the function is invoked with 'new', a new object 
+    is created, and 'this' points to that object.
+
+    NOTE: It’s important to use the 'new' keyword, as without it 'this' won't work 
+    as expected and may refer to the global context (e.g., the 'window' object in browsers).
 */
-// Instanciando pessoas usando a função construtora
-const p1 = new Pessoa('Pedro', 'Miranda');
-const p2 = new Pessoa('Laura', 'Fernanda');
 
-// Acessando propriedades e métodos das instâncias
-console.log(p1.nome);   // Saída: Pedro
-console.log(p2.nome);   // Saída: Laura
+// Creating instances of Person objects using the constructor function
+const p1 = new Person('Pedro', 'Miranda');
+const p2 = new Person('Laura', 'Fernanda');
 
-// Chamando um método público da instância
-p1.metodo();    // Saída: Pedro, sou um método!
-p2.metodo();    // Saída: Laura, sou um método!
+// Accessing public properties
+console.log(p1.firstName);   // Output: Pedro
+console.log(p2.firstName);   // Output: Laura
+
+// Calling a public method
+p1.method();    // Output: Pedro, I am a public method!
+p2.method();    // Output: Laura, I am a public method!
