@@ -1,24 +1,28 @@
-// Funções recursivas
-/*
-    Uma função recursiva é uma função que chama a si mesma durante sua execução. No exemplo abaixo,
-    a função 'recursiva' imprime o valor de 'max' e, em seguida, chama a si mesma com um valor incrementado.
+// Recursive Functions
 
-    É importante definir uma condição de parada para evitar uma chamada recursiva infinita. No exemplo,
-    a condição 'if (max >= 10) return;' impede que a função continue chamando a si mesma quando 'max' atinge 10.
+/**
+ * A recursive function is a function that calls itself during its execution.
+ * 
+ * Below is an example of a recursive function that prints values of a counter,
+ * incrementing it with each call until the stopping condition is met.
+ * 
+ * It is essential to define a stopping condition to avoid infinite recursion. 
+ * In the example, the condition 'if (max >= 10) return;' prevents the function 
+ * from continuing to call itself when 'max' reaches 10.
+ * 
+ * Note: Excessive recursive calls can lead to a 'maximum call stack size exceeded' error,
+ * which occurs when the number of recursive calls exceeds the stack size limit.
+ */
 
-    Em alguns casos, ao utilizar funções recursivas, pode-se encontrar o erro 'maximum call stack size exceeded',
-    que ocorre quando há um número excessivo de chamadas recursivas, excedendo o limite do tamanho da pilha de chamadas.
+// Recursive function
+function recursive(max) {
+    console.log(max); // Prints the current value of 'max'
 
-    Nota: Para contextos específicos, como navegadores, existe um limite de recursividade para evitar estouro de pilha.
-*/
+    if (max >= 10) return; // Stopping condition: ends recursion when 'max' is 10 or more
 
-function recursiva(max) {
-    console.log(max);
-
-    if (max >= 10) return; // Condição de parada
-    max++;
-    recursiva(max); // Chamada recursiva
+    max++; // Increments the value of 'max'
+    recursive(max); // Calls the function recursively with the new value of 'max'
 }
 
-// Chamando a função recursiva com um valor inicial
-recursiva(-10);
+// Calling the recursive function with an initial value
+recursive(-10);

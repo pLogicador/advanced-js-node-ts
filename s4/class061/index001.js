@@ -1,92 +1,73 @@
-// Funções geradoras
+// Generator Functions
 
 /**
- * Funções geradoras são funções especiais que podem ser interrompidas e posteriormente continuadas,
-    permitindo a criação de sequências de valores de forma lazy (sob demanda).
-
-    Exemplo 1: Criando uma função geradora simples.
+ * Generator functions are special functions that can be paused and later resumed,
+ * allowing for the creation of sequences of values lazily (on demand).
+ * 
+ * Example 1: Creating a simple generator function.
  */
 
-// Exemplo 3: exemplo simples
-function* geradora1() {
-    // Código qualquer...
-    yield 'Valor 1';
-    // Código qualquer...
-    yield 'Valor 2';
-    // Código qualquer...
-    yield 'Valor 3';
+// Example 1: Simple Generator Function
+function* generator1() {
+    yield 'Value 1';
+    yield 'Value 2';
+    yield 'Value 3';
 }
 
-const g1 = geradora1();
+const g1 = generator1();
 
-// Iterando sobre os valores gerados
+// Iterating over the generated values
 for (let value of g1) {
     console.log(value);
 }
 
-// Criando uma função geradora infinita.
-function* geradora2() {
+// Example 2: Creating an Infinite Generator Function
+function* generator2() {
     let i = 0;
-
-    while(true) {
+    while (true) {
         yield i;
         i++;
     }
 }
 
-/*
-const g2 = geradora2();
-console.log(g2.next().value);
-console.log(g2.next().value);
-console.log(g2.next().value);
-*/
+const g2 = generator2();
+console.log(g2.next().value); // Output: 0
+console.log(g2.next().value); // Output: 1
+console.log(g2.next().value); // Output: 2
 
-/*
-    Exemplo 3: Delegando para outro gerador.
-    Aqui, a função geradora4 delega para a função geradora3.
-*/
-function* geradora3(){
+// Example 3: Delegating to Another Generator
+function* generator3() {
     yield 0;
     yield 1;
     yield 2;
 }
 
-function* geradora4(){
-    yield* geradora3();
+function* generator4() {
+    yield* generator3();
     yield 3;
     yield 4;
     yield 5;
 }
 
-const g4 = geradora4();
-for(let valor of g4) {
-    console.log(valor);
+const g4 = generator4();
+for (let value of g4) {
+    console.log(value); // Outputs: 0, 1, 2, 3, 4, 5
 }
 
-/*
-    Exemplo 4: Gerando funções através da função geradora5.
-*/
-function* geradora5(){
-    yield function(){
-        console.log('vim de y1');
+// Example 4: Generating Functions with Generators
+function* generator5() {
+    yield function() {
+        console.log('came from y1');
     };
-
-    // ...
-    /* // isso faz parar e não prossegir para a próxima execução
-    return function(){
-        console.log('vim do return');
-    }
-    
-    */
-
-    yield function(){
-        console.log('vim de y2');
+    // Code after return will not execute
+    return function() {
+        console.log('came from return');
     };
 }
 
-const g5 = geradora5();
+const g5 = generator5();
 const func1 = g5.next().value;
 const func2 = g5.next().value;
 
-func1(); // Executando a primeira função gerada
-func2(); // Executando a segunda função gerada
+func1(); // Executing the first generated function: Output: 'came from y1'
+func2(); // Executing the second generated function: Output: 'came from y2'
